@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TestCard = ({ image, title, totalTests, pypCount }) => {
+const TestCard = ({id, image, title, totalTests, pypCount }) => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col h-full">
       <div className="h-36 sm:h-40 overflow-hidden bg-gray-50 flex items-center justify-center p-3 sm:p-4">
@@ -28,7 +28,7 @@ const TestCard = ({ image, title, totalTests, pypCount }) => {
           </div>
         </div>
 
-        <Link to="/" className="block w-full text-center text-blue-600 text-sm sm:text-base font-medium border border-blue-600 rounded-lg py-2 sm:py-2.5 hover:bg-blue-600 hover:text-white transition-colors">
+        <Link to={`/test-series/${id}`} className="block w-full text-center text-blue-600 text-sm sm:text-base font-medium border border-blue-600 rounded-lg py-2 sm:py-2.5 hover:bg-blue-600 hover:text-white transition-colors">
           View Series
         </Link>
       </div>

@@ -12,7 +12,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsOpen(true)}
-              className="md:hidden p-2 -ml-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
+              className="lg:hidden p-2 -ml-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
               aria-label="Open menu"
             >
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,36 +20,36 @@ const Navbar = () => {
               </svg>
             </button>
 
-            <div className="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none">
+            <div className="absolute left-1/2 transform -translate-x-1/2 lg:static lg:transform-none">
               <Link to="/" className="flex items-center">
                 <span className="sr-only">Testshala</span>
-                <img className="h-12 w-auto" src="/logo.jpg" alt="Testshala Logo" />
+                <img className="h-14 md:h-16 lg:h-14 xl:h-16 w-auto" src="/logo.jpg" alt="Testshala Logo" />
               </Link>
             </div>
 
-            <nav className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
-              <Link to="/" className="text-base font-medium text-blue-600 hover:text-blue-600 border-b-2 border-blue-600 pb-1">
+            <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 absolute left-1/2 transform -translate-x-1/2">
+              <Link to="/" className="text-sm xl:text-base font-medium text-blue-600 hover:text-blue-600 border-b-2 border-blue-600 pb-1 whitespace-nowrap">
                 Home
               </Link>
-              <Link to="/" className="text-base font-medium text-gray-600 hover:text-blue-600">
+              <Link to="/" className="text-sm xl:text-base font-medium text-gray-600 hover:text-blue-600 whitespace-nowrap">
                 Test Series
               </Link>
-              <Link to="/" className="text-base font-medium text-gray-600 hover:text-blue-600">
+              <Link to="/" className="text-sm xl:text-base font-medium text-gray-600 hover:text-blue-600 whitespace-nowrap">
                 Current Affairs
               </Link>
-              <Link to="/" className="text-base font-medium text-gray-600 hover:text-blue-600">
+              <Link to="/" className="text-sm xl:text-base font-medium text-gray-600 hover:text-blue-600 whitespace-nowrap">
                 Downloads
               </Link>
-              <Link to="/" className="text-base font-medium text-gray-600 hover:text-blue-600">
+              <Link to="/" className="text-sm xl:text-base font-medium text-gray-600 hover:text-blue-600 whitespace-nowrap">
                 State Exams
               </Link>
-              <Link to="/" className="text-base font-medium text-gray-600 hover:text-blue-600">
+              <Link to="/" className="text-sm xl:text-base font-medium text-gray-600 hover:text-blue-600 whitespace-nowrap">
                 Cart
               </Link>
             </nav>
 
             <div className="flex items-center">
-              <Link to="/" className="whitespace-nowrap inline-flex items-center justify-center px-6 py-2 border border-blue-600 rounded-full text-base font-medium text-blue-600 bg-white hover:bg-blue-600 hover:text-white transition-colors">
+              <Link to="/login" className="whitespace-nowrap inline-flex items-center justify-center px-4 md:px-6 py-2 border border-blue-600 rounded-full text-sm md:text-base font-medium text-blue-600 bg-white hover:bg-blue-600 hover:text-white transition-colors">
                 Login
               </Link>
             </div>
@@ -59,12 +59,12 @@ const Navbar = () => {
 
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden transition-opacity"
+          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden transition-opacity"
           onClick={() => setIsOpen(false)}
         />
       )}
 
-      <div className={`fixed top-0 left-0 h-full w-80 bg-white shadow-2xl z-40 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed top-0 left-0 h-full w-80 bg-white shadow-2xl z-40 transform transition-transform duration-300 ease-in-out lg:hidden ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-5 border-b border-gray-200">
             <img className="h-8 w-auto" src="/logo.jpg" alt="Testshala" />
@@ -127,7 +127,7 @@ const Navbar = () => {
 
           <div className="p-4 border-t border-gray-200">
             <Link 
-              to="/" 
+              to="/login" 
               onClick={() => setIsOpen(false)}
               className="block w-full text-center px-4 py-3 border border-blue-600 rounded-full text-base font-medium text-blue-600 bg-white hover:bg-blue-600 hover:text-white transition-colors"
             >
