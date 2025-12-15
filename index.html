@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Series - Main Body</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- CSS STYLES --- */
+
+        /* 1. VARIABLES & RESET */
+        :root {
+            --primary-color: #006CD8;
+            --primary-light: #e6f0ff;
+            --secondary-color: #ffc107;
+            --heading-color: #1e293b;
+            --text-color: #475569;
+            --white-color: #ffffff;
+            --bg-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --box-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: var(--white-color);
+            line-height: 1.6;
+        }
+
+        /*.container {*/
+        /* width: 100%;*/
+            /*max-width: 1200px;*/
+            /*margin: 0 auto;*/
+        /*}*/
+
+        section {
+            padding: 40px 0; /* MODIFIED: Reduced padding for mobile */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem; /* MODIFIED: Reduced for mobile */
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 0.9rem; /* MODIFIED: Reduced for mobile */
+            color: var(--text-color);
+            margin-bottom: 30px; /* MODIFIED: Reduced for mobile */
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px; /* MODIFIED: Reduced for mobile */
+            background: var(--primary-color);
+            color: var(--white-color);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+             background: var(--primary-color);
+             color: var(--white-color);
+        }
+
+        /* 2. HERO SECTION */
+        .hero {
+            padding-top: 40px; /* MODIFIED: Reduced padding */
+            padding-bottom: 40px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.0rem; /* MODIFIED: Reduced for mobile */
+            font-weight: 800;
+            color: var(--heading-color);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-size: 1.0rem; /* MODIFIED: Reduced for mobile */
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+        
+        .hero-image {
+            max-width: 350px; /* MODIFIED: Reduced for mobile */
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        /* 3. EXAM CATEGORY SECTION */
+        #exam-categories {
+            background-color: var(--white-color);
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .search-bar input {
+            flex-grow: 1;
+            border: none;
+            padding: 14px 20px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            border: none;
+            background: var(--primary-color);
+            color: var(--white-color);
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .category-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background-color: var(--white-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--heading-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--primary-color);
+        }
+
+        .category-card .icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+        }
+
+        /* 4. TRENDING TEST SERIES */
+        #trending-series {
+            background-color: var(--bg-color);
+        }
+
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+            gap: 16px; /* Reduced gap for mobile */
+        }
+
+        .series-card {
+            background-color: var(--white-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .series-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .series-card-image {
+            width: 100%;
+            height: 140px; /* Reduced height for mobile */
+            object-fit: cover;
+            background-color: var(--heading-color);
+        }
+
+        .series-card-content {
+            padding: 16px; /* Reduced padding for mobile */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .series-card-content h3 {
+            font-size: 1.0rem; /* Reduced font size for mobile */
+            color: var(--heading-color);
+            margin-bottom: 8px;
+        }
+        
+        .series-meta {
+            display: flex;
+            flex-direction: column; /* Stacked items vertically */
+            gap: 8px; /* Reduced gap */
+            font-size: 0.85rem; /* Reduced font size */
+            margin-bottom: 12px; /* Reduced margin */
+            color: var(--text-color);
+            align-items: flex-start; /* Aligned items to start */
+        }
+
+        .series-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .series-card-content .btn {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px; /* Reduced padding */
+            font-size: 0.9rem; /* Reduced font size */
+            width: 100%; /* Made button full width of card content */
+        }
+
+        /* 5. STATE TEST SERIES */
+        #state-series {
+            background-color: var(--white-color);
+        }
+
+        /* 6. CENTRAL TEST SERIES */
+        #central-series {
+            background-color: var(--bg-color);
+        }
+
+
+        /* 7. MEDIA QUERIES FOR RESPONSIVENESS */
+        
+        /* ADDED: Specific styles for the smallest screens */
+        @media (max-width: 575.98px) {
+            
+             .series-card-content h3 {
+                font-size: 0.9rem;
+             }
+             
+            .series-card-content .btn {
+                padding: 6px;
+                font-size: 0.79rem;
+            }
+            .series-meta {
+                gap: 5px;
+                font-size: 0.75rem;
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (min-width: 576px) {
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 50px 0; /* RESTORED: Original padding */
+            }
+
+            .section-title {
+                font-size: 2.5rem; /* RESTORED: Original size */
+            }
+
+            .section-subtitle {
+                font-size: 1rem; /* RESTORED: Original size */
+                margin-bottom: 40px; /* RESTORED: Original margin */
+            }
+            
+            .btn {
+                padding: 12px 28px; /* RESTORED: Original padding */
+            }
+
+            .hero .container {
+                display: flex;
+                align-items: center;
+                gap: 30px;
+                text-align: left;
+            }
+
+            .hero-content {
+                flex: 1;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem; /* RESTORED: Original size */
+            }
+            
+            .hero-content p {
+                margin-left: 0;
+                font-size: 1.1rem; /* RESTORED: Original size */
+            }
+
+            .hero-image-wrapper {
+                flex: 0 0 40%;
+            }
+
+            .hero-image {
+                margin-top: 0;
+                max-width: 450px; /* RESTORED: Original size */
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .series-grid {
+                grid-template-columns: repeat(3, 1fr); /* MODIFIED: 3 columns for tablet */
+                gap: 24px; /* RESTORED: Original gap */
+            }
+
+            /* RESTORING CARD STYLES FOR TABLET/DESKTOP */
+            .series-card-image {
+                height: 180px; /* RESTORED: Original height */
+            }
+
+            .series-card-content {
+                padding: 20px; /* RESTORED: Original padding */
+            }
+
+            .series-card-content h3 {
+                font-size: 1.25rem; /* RESTORED: Original font size */
+            }
+            
+            .series-meta {
+                flex-direction: row; /* RESTORED: Horizontal layout */
+                gap: 20px; /* RESTORED: Original gap */
+                font-size: 0.9rem; /* RESTORED: Original font size */
+                margin-bottom: 16px; /* RESTORED: Original margin */
+                align-items: center; /* RESTORED: Original alignment */
+            }
+
+            .series-card-content .btn {
+                padding: 12px 28px; /* RESTORED: Original padding */
+                font-size: 1rem; /* RESTORED: Original font size */
+                width: auto; /* RESTORED: Original width */
+            }
+            
+        }
+
+        @media (min-width: 992px) {
+            .category-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+             .series-grid {
+                grid-template-columns: repeat(4, 1fr); /* MODIFIED: 4 columns for desktop */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Your One Stop Solution for <span>All Exam Preparations</span></h1>
+                    <p>Get access to unlimited mock tests, previous year papers, and study notes for over 700 exams.</p>
+                    <a href="https://testshala.in/courses/" class="btn">View All Test Series</a>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760606156/flat-university-concept-background_23-2148189763-removebg-preview_qpx4b8.png" alt="Students preparing for exams" class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="exam-categories">
+            <div class="container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for your exam...">
+                    <button aria-label="Search"><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="category-grid">
+                    <a href="https://testshala.in/courses/" class="category-card">
+                        <span class="icon"><i class="fas fa-landmark"></i></span>
+                        <span>SSC</span>
+                    </a>
+                    <a href="https://testshala.in/courses/" class="category-card">
+                        <span class="icon"><i class="fas fa-building-columns"></i></span>
+                        <span>Banking</span>
+                    </a>
+                    <a href="https://testshala.in/courses/" class="category-card">
+                        <span class="icon"><i class="fas fa-train"></i></span>
+                        <span>Railways</span>
+                    </a>
+                    <a href="https://testshala.in/courses/" class="category-card">
+                        <span class="icon"><i class="fas fa-school-flag"></i></span>
+                        <span>State Exams</span>
+                    </a>
+                    <a href="https://testshala.in/courses/" class="category-card">
+                        <span class="icon"><i class="fas fa-user-shield"></i></span>
+                        <span>Defence</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="trending-series">
+            <div class="container">
+                <h2 class="section-title">Trending Test Series</h2>
+                <p class="section-subtitle">Practice with the latest pattern of questions asked in recent exams and get ahead in the competition.</p>
+
+                <div class="series-grid">
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760609256/download7_bb3qf2.jpg" alt="SSC CGL" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>SSC CGL Tier 1 2024 Test Series</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 250+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 50+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?keyword=&tutor-course-filter-category=16&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760608993/download8_jkbhon.jpg" alt="IBPS PO" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>IBPS PO Prelims 2024 Mock Test</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 180+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 30+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category=42&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760608993/download3_p7vmqj.png" alt="RRB NTPC" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>Railway RRB NTPC CBT-1 2024</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 300+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 60+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category%5B%5D=44&tutor-course-filter-category%5B%5D=43&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760609256/download7_bb3qf2.jpg" alt="SSC CGL" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>SSC CHSL 2024 Test Series</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 200+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 40+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?supported_filters%5Bsearch%5D=search&supported_filters%5Bcategory%5D=category&supported_filters%5Btag%5D=tag&supported_filters%5Bdifficulty_level%5D=difficulty_level&supported_filters%5Bprice_type%5D=price_type&column_per_row=3&course_per_page=12&show_pagination=true&loop_content_only=false&keyword=&tutor-course-filter-category%5B%5D=51&tutor-course-filter-category%5B%5D=16&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=true&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="state-series">
+            <div class="container">
+                <h2 class="section-title">Popular State Test Series</h2>
+                <p class="section-subtitle">Ace your state-level exams with our specialized mock test series.</p>
+                <div class="series-grid">
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760828261/1_jqhsv5.jpg" alt="State Police Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>UP Police Constable 2024</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 150+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 20+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category%5B%5D=48&tutor-course-filter-category%5B%5D=45&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760828261/2_1_riyxvj.png" alt="BPSC Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>BPSC PT (Prelims) 2024</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 100+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 15+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category=46&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760828261/3_phrall.jpg" alt="REET Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>REET Level 2 2024 Test Series</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 120+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 10+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category=47&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                     <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760833355/download15_xydfyj.jpg" alt="State Police Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>MP Patwari 2024 Test Series</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 130+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 15+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?supported_filters%5Bsearch%5D=search&supported_filters%5Bcategory%5D=category&supported_filters%5Btag%5D=tag&supported_filters%5Bdifficulty_level%5D=difficulty_level&supported_filters%5Bprice_type%5D=price_type&column_per_row=3&course_per_page=12&show_pagination=false&loop_content_only=false&keyword=&tutor-course-filter-category=54&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Section>
+
+        <section id="central-series">
+            <div class="container">
+                <h2 class="section-title">Popular Central Exams</h2>
+                <p class="section-subtitle">Get ready for all-India exams with our comprehensive test packages.</p>
+                <div class="series-grid">
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760828261/4_fa7szd.jpg" alt="UPSC Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>UPSC CSE Prelims 2024</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 80+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 10+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category=50&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760828261/5_lo2dht.jpg" alt="Defence Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>CDS (II) 2024 Mock Test</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 100+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 15+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category=52&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760828261/6_crcah9.jpg" alt="CTET Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>CTET Paper 1 2024</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 130+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 20+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&keyword=&tutor-course-filter-category%5B%5D=51&tutor-course-filter-category%5B%5D=53&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                    <div class="series-card">
+                        <img src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760833354/download17_fpv4te.jpg" alt="Defence Exam" class="series-card-image">
+                        <div class="series-card-content">
+                            <h3>AFCAT 2024 Mock Test</h3>
+                            <div class="series-meta">
+                                <span><i class="fas fa-file-alt"></i> 110+ Tests</span>
+                                <span><i class="fas fa-pen"></i> 12+ PYPs</span>
+                            </div>
+                            <a href="https://testshala.in/courses/?supported_filters%5Bsearch%5D=search&supported_filters%5Bcategory%5D=category&supported_filters%5Btag%5D=tag&supported_filters%5Bdifficulty_level%5D=difficulty_level&supported_filters%5Bprice_type%5D=price_type&column_per_row=3&course_per_page=12&show_pagination=false&loop_content_only=false&keyword=&tutor-course-filter-category%5B%5D=52&tutor-course-filter-category%5B%5D=55&course_filter=true&loop_content_only=false&column_per_row=3&course_per_page=12&show_pagination=false&current_page=1&action=tutor_course_filter_ajax" class="btn btn-outline">View Series</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
