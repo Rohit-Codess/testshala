@@ -1,1 +1,0 @@
-In this directory we write all backend logic.
