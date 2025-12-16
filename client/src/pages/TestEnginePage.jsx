@@ -1,11 +1,7 @@
-// src/pages/TestEnginePage.jsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-// Import Heroicons for the menu button
-// If you get an error, run: npm install @heroicons/react
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-// --- MOCK DATA (Enhanced with duration) ---
 const mockTestData = {
     title: "SSC CGL Mock Test 1",
     durationSecs: 60 * 60, // 60 minutes
@@ -30,7 +26,6 @@ const mockTestData = {
             id: "q5", questionText: "What is the chemical symbol for Gold?",
             options: [{ id: "opt1", text: "Gd" }, { id: "opt2", text: "Go" }, { id: "opt3", text: "Ag" }, { id: "opt4", text: "Au" }],
         },
-        // ... add more questions to test scrolling ...
         { id: "q6", questionText: "Filler question 6 to test scrolling.", options: [{id:"a", text:"A"},{id:"b", text:"B"}] },
         { id: "q7", questionText: "Filler question 7.", options: [{id:"a", text:"A"},{id:"b", text:"B"}] },
         { id: "q8", questionText: "Filler question 8.", options: [{id:"a", text:"A"},{id:"b", text:"B"}] },
@@ -39,8 +34,6 @@ const mockTestData = {
     ]
 };
 
-
-// Helper to define status colors for palette
 const STATUS_CLASSES = {
     not_visited: 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100',
     not_answered: 'bg-red-500 text-white border-red-500',
@@ -55,23 +48,18 @@ const TestEnginePage = () => {
     const testQuestions = mockTestData.questions;
     const totalQuestions = testQuestions.length;
 
-    // --- STATES ---
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [userResponses, setUserResponses] = useState(
         Array(totalQuestions).fill({ status: 'not_visited', selectedOptionId: null })
     );
     const [tempSelectedOption, setTempSelectedOption] = useState(null);
-    // New State for Timer
     const [timeLeft, setTimeLeft] = useState(mockTestData.durationSecs);
-    // New State for Mobile Palette toggle
     const [isPaletteOpen, setIsPaletteOpen] = useState(false);
 
 
     const currentQuestion = testQuestions[currentQuestionIndex];
 
-    // --- EFFECT 1: TIMER LOGIC ---
     const handleSubmitTest = useCallback(() => {
-        // In real app, calculate score here and send to backend
         console.log("Final User Responses:", userResponses);
         console.log("Time Taken:", mockTestData.durationSecs - timeLeft, "seconds");
         alert("Test Submitted successfully! Redirecting to home...");
@@ -89,7 +77,6 @@ const TestEnginePage = () => {
         return () => clearInterval(timerId);
     }, [timeLeft, handleSubmitTest]);
 
-    // Helper to format seconds to HH:MM:SS
     const formatTime = (seconds) => {
         const h = Math.floor(seconds / 3600);
         const m = Math.floor((seconds % 3600) / 60);
@@ -97,22 +84,16 @@ const TestEnginePage = () => {
         return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     };
 
-
-    // --- EFFECT 2: Load saved response on question change ---
     useEffect(() => {
         setTempSelectedOption(userResponses[currentQuestionIndex].selectedOptionId);
         if (userResponses[currentQuestionIndex].status === 'not_visited') {
             updateResponseState(currentQuestionIndex, 'not_answered', null);
         }
-        // Close mobile palette on question change
         if(window.innerWidth < 768) {
             setIsPaletteOpen(false);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentQuestionIndex]);
 
-
-    // --- Helper to update responses ---
     const updateResponseState = (index, status, optionId = null) => {
         const newResponses = [...userResponses];
         const finalOptionId = optionId !== null ? optionId : newResponses[index].selectedOptionId;
@@ -120,8 +101,6 @@ const TestEnginePage = () => {
         setUserResponses(newResponses);
     };
 
-
-    // --- HANDLERS ---
     const handleOptionSelect = (optionId) => {
         setTempSelectedOption(optionId);
     };
@@ -169,10 +148,8 @@ const TestEnginePage = () => {
     return (
         <div className="h-screen flex flex-col bg-gray-100 font-sans overflow-hidden select-none relative">
             
-            {/* === TOP HEADER === */}
             <header className="bg-blue-900 text-white p-3 md:p-4 flex justify-between items-center shadow-md z-20 relative">
                 <div className="flex items-center">
-                    {/* Mobile Menu Toggle Button */}
                     <button onClick={() => setIsPaletteOpen(true)} className="mr-3 md:hidden p-1 rounded hover:bg-blue-800">
                         <Bars3Icon className="h-6 w-6" />
                     </button>
@@ -180,7 +157,6 @@ const TestEnginePage = () => {
                 </div>
                 
                 <div className="flex items-center space-x-2 md:space-x-4">
-                    {/* Working Timer */}
                     <div className={`text-lg md:text-xl font-mono px-3 py-1 md:px-4 md:py-2 rounded-md border ${timeLeft < 300 ? 'bg-red-600 border-red-700 animate-pulse' : 'bg-blue-800 border-blue-500'}`}>
                         {formatTime(timeLeft)}
                     </div>
@@ -193,14 +169,10 @@ const TestEnginePage = () => {
                 </div>
             </header>
 
-
-            {/* === MAIN CONTENT === */}
             <div className="grow flex overflow-hidden relative z-10">
 
-                {/* --- LEFT SIDE: QUESTION AREA --- */}
                 <main className="w-full md:w-3/4 p-4 md:p-6 overflow-y-auto bg-white pb-24 md:pb-6">
                     <div className="max-w-4xl mx-auto">
-                        {/* Question Header */}
                         <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-6 border-b pb-4 font-medium">
                             <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2 sm:mb-0">Question No. {currentQuestionIndex + 1}</h2>
                             <div className="text-gray-600 text-sm bg-gray-100 px-3 py-1 rounded-full self-start sm:self-auto">
@@ -208,12 +180,10 @@ const TestEnginePage = () => {
                             </div>
                         </div>
 
-                        {/* Question Text */}
                         <div className="text-lg md:text-xl text-gray-900 mb-8 leading-relaxed font-medium">
                             {currentQuestion.questionText}
                         </div>
 
-                        {/* Options */}
                         <div className="space-y-3 md:space-y-4">
                             {currentQuestion.options.map((option, index) => {
                                 const isSelected = tempSelectedOption === option.id;
@@ -245,9 +215,6 @@ const TestEnginePage = () => {
                     </div>
                 </main>
 
-
-                {/* --- RIGHT SIDE: PALETTE (Responsive Drawer) --- */}
-                 {/* Backdrop for mobile */}
                 {isPaletteOpen && (
                     <div 
                         className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
@@ -260,16 +227,13 @@ const TestEnginePage = () => {
                         ${isPaletteOpen ? 'translate-x-0' : 'translate-x-full'}
                         md:relative md:translate-x-0 md:flex md:w-1/4 md:z-auto
                     `}>
-                    {/* Palette Header */}
                     <div className="p-4 bg-gray-50 border-b font-bold text-gray-800 flex justify-between items-center">
                         <span>Question Palette</span>
-                        {/* Close button for mobile */}
                         <button onClick={() => setIsPaletteOpen(false)} className="md:hidden p-1 text-gray-500 hover:bg-gray-200 rounded">
                             <XMarkIcon className="h-6 w-6"/>
                         </button>
                     </div>
 
-                    {/* Legend */}
                     <div className="p-4 text-xs grid grid-cols-2 gap-y-3 gap-x-2 border-b bg-gray-50">
                         <div className="flex items-center"><span className="w-3 h-3 md:w-4 md:h-4 bg-green-500 rounded mr-2"></span> Answered</div>
                         <div className="flex items-center"><span className="w-3 h-3 md:w-4 md:h-4 bg-red-500 rounded mr-2"></span> Not Answered</div>
@@ -278,7 +242,6 @@ const TestEnginePage = () => {
                         <div className="flex items-center col-span-2"><span className="w-3 h-3 md:w-4 md:h-4 bg-purple-500 rounded mr-2 relative after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-2 after:h-2 after:bg-green-300 after:rounded-full"></span> Ans & Marked</div>
                     </div>
 
-                    {/* Grid of Numbers */}
                     <div className="p-4 grow overflow-y-auto custom-scrollbar pb-24 md:pb-4">
                         <div className="grid grid-cols-5 gap-2 md:gap-3">
                             {testQuestions.map((q, index) => {
@@ -302,8 +265,6 @@ const TestEnginePage = () => {
                 </aside>
             </div>
 
-
-            {/* === BOTTOM FOOTER (Fixed) === */}
             <footer className="bg-white p-3 md:p-4 border-t border-gray-200 flex flex-wrap justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-20 fixed bottom-0 w-full md:relative">
                 <div className="flex space-x-2 md:space-x-4 mb-2 sm:mb-0 grow sm:grow-0 font-semibold text-sm md:text-base">
                     <button onClick={handleMarkForReview} className="flex-1 sm:flex-none px-2 md:px-4 py-2 rounded-lg border-2 border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors whitespace-nowrap">
@@ -328,7 +289,6 @@ const TestEnginePage = () => {
                     >
                         Save & Next
                     </button>
-                     {/* Mobile submit button located in footer */}
                      <button
                         onClick={handleSubmitTest}
                         className="sm:hidden flex-1 px-4 py-2 rounded-lg font-bold text-white transition-all bg-red-600 hover:bg-red-700 shadow-md"

@@ -1,14 +1,10 @@
-// src/pages/LoginPage.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar'; // Keep navbar for consistency
+import Navbar from '../components/Navbar';
 
 const LoginPage = () => {
-  // State to handle form inputs
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  // Mock submit handler for now
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Attempting login with:', email, password);
@@ -20,7 +16,6 @@ const LoginPage = () => {
       <Navbar />
       <div className="grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl w-full space-y-8 bg-white rounded-2xl shadow-xl overflow-hidden flex">
-          {/* Left Side - Image (Hidden on small screens) */}
           <div className="hidden md:block w-1/2 bg-blue-50 relative overflow-hidden">
              <img
                 src="/hero-illustration.png"
@@ -29,7 +24,6 @@ const LoginPage = () => {
              />
           </div>
 
-          {/* Right Side - Form */}
           <div className="w-full md:w-1/2 p-8 sm:p-12">
             <div>
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">

@@ -1,10 +1,6 @@
-// src/pages/TestDetailsPage.jsx
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-// import headerImg from '../assets/test_ssc_cgl.png';
-
-// MOCK DATA for a specific test series (e.g., SSC CGL)
 const mockTestData = {
   id: 1,
   title: "SSC CGL Tier 1 2024 Test Series",
@@ -17,7 +13,6 @@ const mockTestData = {
     language: "English, Hindi",
   },
   price: 299,
-  // Sample syllabus structure
   syllabus: [
     {
       sectionTitle: "General Intelligence & Reasoning",
@@ -69,30 +64,26 @@ const mockTestData = {
         },
       ],
     },
-    // Add more sections like Quantitative Aptitude, English Comprehension here...
+
   ],
 };
 
 const TestDetailsPage = () => {
-  // We will use this ID later to fetch real data. For now, we just use mockTestData.
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("overview");
 
-  const test = mockTestData; // Using mock data
+  const test = mockTestData;
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Page Header Banner */}
       <div className="bg-blue-900 text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
-          {/* Left info */}
           <div className="md:w-2/3 mb-6 md:mb-0">
             <h1 className="text-3xl font-bold mb-4">{test.title}</h1>
             <p className="text-blue-100 text-lg mb-6">{test.description}</p>
 
-            {/* Stats Badges */}
             <div className="flex flex-wrap gap-4">
               <span className="bg-blue-800 px-3 py-1 rounded-full text-sm flex items-center">
                 📄 {test.stats.totalTests} Total Tests
@@ -108,7 +99,6 @@ const TestDetailsPage = () => {
               </span>
             </div>
           </div>
-          {/* Right Image - Hidden on small, visible on large */}
           <div className="hidden lg:block md:w-1/3 pl-8">
             <img
               src="https://res.cloudinary.com/dh85jgh9d/image/upload/v1760609256/download7_bb3qf2.jpg"
@@ -119,12 +109,9 @@ const TestDetailsPage = () => {
         </div>
       </div>
 
-      {/* Main Content Container with Sidebar layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-          {/* Left Column (Tabs & Syllabus Content) - Spans 8 columns */}
           <main className="lg:col-span-8 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            {/* Simple Tabs Navigation */}
             <div className="border-b border-gray-200 mb-6 flex space-x-8">
               <button
                 className={`pb-4 font-medium text-lg ${
@@ -148,21 +135,17 @@ const TestDetailsPage = () => {
               </button>
             </div>
 
-            {/* Tab Content */}
             <div>
               {activeTab === "overview" && (
                 <div className="space-y-6">
-                  {/* Map through syllabus sections */}
                   {test.syllabus.map((section, index) => (
                     <div
                       key={index}
                       className="border border-gray-200 rounded-lg overflow-hidden"
                     >
-                      {/* Section Header */}
                       <div className="bg-gray-50 px-4 py-3 border-b border-gray-200 font-semibold text-gray-800">
                         {section.sectionTitle}
                       </div>
-                      {/* List of Tests in this section */}
                       <div className="divide-y divide-gray-200">
                         {section.tests.map((testItem) => (
                           <div
@@ -214,7 +197,6 @@ const TestDetailsPage = () => {
             </div>
           </main>
 
-          {/* Right Column (Sticky Buy Now Widget) - Spans 4 columns */}
           <aside className="lg:col-span-4 mt-8 lg:mt-0">
             <div className="bg-white rounded-xl shadow-lg border border-blue-100 p-6 sticky top-24">
               <h2 className="text-xl font-bold text-gray-900 mb-2">

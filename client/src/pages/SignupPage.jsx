@@ -1,10 +1,8 @@
-// src/pages/SignupPage.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 const SignupPage = () => {
-  // State for form fields
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -32,7 +30,6 @@ const SignupPage = () => {
       <Navbar />
       <div className="grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl w-full space-y-8 bg-white rounded-2xl shadow-xl overflow-hidden flex">
-          {/* Left Side - Image (Hidden on small screens) */}
           <div className="hidden md:block w-1/2 bg-blue-50 relative overflow-hidden">
              <img
                 src="/hero-illustration.png"
@@ -41,7 +38,6 @@ const SignupPage = () => {
              />
           </div>
 
-          {/* Right Side - Form */}
           <div className="w-full md:w-1/2 p-8 sm:p-12">
             <div>
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -56,7 +52,6 @@ const SignupPage = () => {
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
               <div className="rounded-md shadow-sm spacing-y-4">
-                {/* Full Name Input */}
                 <div className="mb-4">
                   <label htmlFor="fullName" className="sr-only">Full Name</label>
                   <input
@@ -70,7 +65,6 @@ const SignupPage = () => {
                     onChange={onChange}
                   />
                 </div>
-                 {/* Email Input */}
                 <div className="mb-4">
                   <label htmlFor="email-address" className="sr-only">Email address</label>
                   <input
@@ -85,7 +79,6 @@ const SignupPage = () => {
                     onChange={onChange}
                   />
                 </div>
-                {/* Password Input */}
                 <div className="mb-4">
                   <label htmlFor="password" className="sr-only">Password</label>
                   <input
@@ -100,7 +93,6 @@ const SignupPage = () => {
                     onChange={onChange}
                   />
                 </div>
-                {/* Confirm Password Input */}
                 <div>
                   <label htmlFor="confirmPassword" className="sr-only">Confirm Password</label>
                   <input
