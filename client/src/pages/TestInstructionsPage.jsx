@@ -22,7 +22,7 @@ const TestInstructionsPage = () => {
     if (isChecked) {
       // This is where we will eventually navigate to the main Test Engine page
       alert(`Starting Test ID: ${testId}. The full-screen test engine will be built in the next phase!`);
-      // navigate('/take-test/' + testId); // Future route
+      navigate('/take-test/' + testId); // Future route
     }
   };
 

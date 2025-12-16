@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import TestDetailsPage from './pages/TestDetailsPage';
 import TestInstructionsPage from './pages/TestInstructionsPage';
+import TestEnginePage from './pages/TestEnginePage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/test-series/:id" element={<TestDetailsPage />} />
           <Route path="/test-instructions/:testId" element={<TestInstructionsPage />} />
+          <Route path="/take-test/:testId" element={<TestEnginePage />} />
         </Routes>
       </Router>
     </div>
