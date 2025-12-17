@@ -1,14 +1,48 @@
+// src/pages/LoginPage.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+// 1. Import axios
+import axios from 'axios';
 import Navbar from '../components/Navbar';
+import loginImg from "/hero-illustration.png";
+// 2. Import Auth Hook
+import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSubmit = (e) => {
+
+  // 3. Add state for error and loading
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  // >>> REAL BACKEND LOGIN LOGIC <<<
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Attempting login with:', email, password);
-    alert(`Login attempt for: ${email} (Backend integration coming next!)`);
+    setError('');
+
+    try {
+      setIsLoading(true);
+      // 4. Make API call to backend login endpoint
+      const response = await axios.post('http://localhost:5000/api/users/login', {
+        email,
+        password,
+      });
+
+      // 5. On success: Log user in globally and redirect to home
+      // response.data contains user info and the token
+      login(response.data);
+      navigate('/');
+
+    } catch (err) {
+      // 6. Handle errors (e.g., Invalid credentials)
+      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -16,14 +50,16 @@ const LoginPage = () => {
       <Navbar />
       <div className="grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl w-full space-y-8 bg-white rounded-2xl shadow-xl overflow-hidden flex">
+          {/* Left Side - Image */}
           <div className="hidden md:block w-1/2 bg-blue-50 relative overflow-hidden">
              <img
-                src="/hero-illustration.png"
+                src={loginImg}
                 alt="Login Illustration"
                 className="absolute inset-0 w-full h-full object-cover object-center p-8"
              />
           </div>
 
+          {/* Right Side - Form */}
           <div className="w-full md:w-1/2 p-8 sm:p-12">
             <div>
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -36,8 +72,15 @@ const LoginPage = () => {
                 </Link>
               </p>
             </div>
+
+             {/* 7. Display Error Alert if exists */}
+             {error && (
+              <div className="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span className="block sm:inline">{error}</span>
+              </div>
+            )}
+
             <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-              <input type="hidden" name="remember" defaultValue="true" />
               <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                   <label htmlFor="email-address" className="sr-only">
@@ -94,11 +137,13 @@ const LoginPage = () => {
               </div>
 
               <div>
+                {/* 8. Update button state based on isLoading */}
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  disabled={isLoading}
+                  className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white ${isLoading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
                 >
-                  Sign in
+                   {isLoading ? 'Signing in...' : 'Sign in'}
                 </button>
               </div>
             </form>
